@@ -1,0 +1,219 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "SHYLUADF"
+		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
+		"ls_BLOB0308_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_BLOB0308'"
+		},
+		"ls_asql_itemproduct_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_asql_itemproduct'"
+		},
+		"ls_asql_storedprocedure_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_asql_storedprocedure'"
+		},
+		"ls_azuresql_item_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azuresql_item'"
+		},
+		"ls_blob_excel_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_blob_excel'"
+		},
+		"ls_blobstorage0308_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_blobstorage0308'"
+		},
+		"ls_myazuresql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_myazuresql'"
+		},
+		"LS_KV_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://KeyVaultSHYLU.vault.azure.net/"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://reqres.in/api/users"
+		},
+		"ls_asurestorage0308_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://azurestorage0309.dfs.core.windows.net"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "SHYLUADF_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"ls_BLOB0308_connectionString": {
+						"value": "[parameters('ls_BLOB0308_connectionString')]"
+					},
+					"ls_asql_itemproduct_connectionString": {
+						"value": "[parameters('ls_asql_itemproduct_connectionString')]"
+					},
+					"ls_asql_storedprocedure_connectionString": {
+						"value": "[parameters('ls_asql_storedprocedure_connectionString')]"
+					},
+					"ls_azuresql_item_connectionString": {
+						"value": "[parameters('ls_azuresql_item_connectionString')]"
+					},
+					"ls_blob_excel_connectionString": {
+						"value": "[parameters('ls_blob_excel_connectionString')]"
+					},
+					"ls_blobstorage0308_connectionString": {
+						"value": "[parameters('ls_blobstorage0308_connectionString')]"
+					},
+					"ls_myazuresql_connectionString": {
+						"value": "[parameters('ls_myazuresql_connectionString')]"
+					},
+					"LS_KV_properties_typeProperties_baseUrl": {
+						"value": "[parameters('LS_KV_properties_typeProperties_baseUrl')]"
+					},
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "SHYLUADF_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SHYLUADF_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "SHYLUADF_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_asurestorage0308_properties_typeProperties_url": {
+						"value": "[parameters('ls_asurestorage0308_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SHYLUADF_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "SHYLUADF_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SHYLUADF_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "SHYLUADF_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SHYLUADF_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "SHYLUADF_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SHYLUADF_ArmTemplate_4')]"
+			]
+		}
+	]
+}

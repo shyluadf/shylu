@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "SHYLUADF"
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"ls_BLOB0308_connectionString": {
+			"value": ""
+		},
+		"ls_asql_itemproduct_connectionString": {
+			"value": ""
+		},
+		"ls_asql_storedprocedure_connectionString": {
+			"value": ""
+		},
+		"ls_azuresql_item_connectionString": {
+			"value": ""
+		},
+		"ls_blob_excel_connectionString": {
+			"value": ""
+		},
+		"ls_blobstorage0308_connectionString": {
+			"value": ""
+		},
+		"ls_myazuresql_connectionString": {
+			"value": ""
+		},
+		"LS_KV_properties_typeProperties_baseUrl": {
+			"value": "https://KeyVaultSHYLU.vault.azure.net/"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://reqres.in/api/users"
+		},
+		"ls_asurestorage0308_properties_typeProperties_url": {
+			"value": "https://azurestorage0309.dfs.core.windows.net"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
