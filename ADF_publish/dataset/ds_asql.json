@@ -1,0 +1,32 @@
+{
+	"name": "ds_asql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_myazuresql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "PRICE",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "PRODUCTS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

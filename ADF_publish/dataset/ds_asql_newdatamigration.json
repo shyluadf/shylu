@@ -1,0 +1,31 @@
+{
+	"name": "ds_asql_newdatamigration",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_myazuresql",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			},
+			"FileSchema": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().FileSchema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().FileName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,32 @@
+{
+	"name": "ds_ASQLDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_myazuresql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "MId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MName",
+				"type": "varchar"
+			},
+			{
+				"name": "Mpric",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "PHARMACY"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

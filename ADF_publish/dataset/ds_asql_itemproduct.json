@@ -1,0 +1,17 @@
+{
+	"name": "ds_asql_itemproduct",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_asql_itemproduct",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "itemproducts"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

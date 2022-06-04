@@ -1,0 +1,31 @@
+{
+	"name": "ds_blob_target",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_BLOB0308",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"datasetfilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().datasetfilename",
+					"type": "Expression"
+				},
+				"container": "target"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

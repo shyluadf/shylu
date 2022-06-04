@@ -1,0 +1,38 @@
+{
+	"name": "ds_asql_item",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresql_item",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "price",
+				"type": "nvarchar"
+			},
+			{
+				"name": "profit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "itemproducts"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,37 @@
+{
+	"name": "ds_blob_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_BLOB0308",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Pharmacy.txt",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MId",
+				"type": "String"
+			},
+			{
+				"name": "MName",
+				"type": "String"
+			},
+			{
+				"name": "Mpric",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

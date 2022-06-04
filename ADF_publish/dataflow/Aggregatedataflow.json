@@ -1,0 +1,54 @@
+{
+	"name": "Aggregatedataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "employeedata",
+						"type": "DatasetReference"
+					},
+					"name": "employeesdata"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "de_blob_output",
+						"type": "DatasetReference"
+					},
+					"name": "Totalempbydept"
+				}
+			],
+			"transformations": [
+				{
+					"name": "aggregateondepatrtment"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Eid as string,",
+				"          Ename as string,",
+				"          Country as string,",
+				"          Did as string",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> employeesdata",
+				"employeesdata aggregate(groupBy(Did),",
+				"     Totalemployees = count(Eid)) ~> aggregateondepatrtment",
+				"aggregateondepatrtment sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['Totalemployeesbydepartment'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Deptid = Did,",
+				"          Totalemployees",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> Totalempbydept"
+			]
+		}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"name": "SHYLUADF",
+	"location": "ukwest",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "798cf22b-5bae-4a02-97f8-84422338740d",
+		"tenantId": "fb418a01-94a2-4289-a7a4-6357d5faefeb"
+	}
+}
