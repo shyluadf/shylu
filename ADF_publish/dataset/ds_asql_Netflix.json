@@ -1,0 +1,66 @@
+{
+	"name": "ds_asql_Netflix",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_myazuresql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "show_id",
+				"type": "varchar"
+			},
+			{
+				"name": "type",
+				"type": "varchar"
+			},
+			{
+				"name": "title",
+				"type": "varchar"
+			},
+			{
+				"name": "director",
+				"type": "varchar"
+			},
+			{
+				"name": "cast",
+				"type": "varchar"
+			},
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "date_added",
+				"type": "varchar"
+			},
+			{
+				"name": "release_year",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "rating",
+				"type": "varchar"
+			},
+			{
+				"name": "duration",
+				"type": "varchar"
+			},
+			{
+				"name": "listed_in",
+				"type": "varchar"
+			},
+			{
+				"name": "description",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "NETFLIX_TITLES"
+		}
+	}
+}
