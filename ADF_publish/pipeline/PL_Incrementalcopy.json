@@ -18,7 +18,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "Select TableName,WaterMarkValue from dbo.Watermarktable where Tablename='@pipeline().parameters.TableName'",
+							"value": "Select TableName,WaterMarkValue from dbo.Watermarktable where Tablename='@{pipeline().parameters.TableName}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -87,7 +87,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "Select *from @{pipeline().parameters.TableName}\nwhere @{pipeline().parameters.WaterMarkcolumn}>\n'@{activity('Lookup Old WaterMark Value').output.FirstRow.WaterMarkValue}'\nAND \n@{pipeline().parameters.WaterMarkcolumn}<='@{activity('Lookup New WaterMark Value').output.FirstROW.Newwatermarkvalue}'",
+							"value": "Select *from @{pipeline().parameters.TableName}\nwhere @{pipeline().parameters.WaterMarkcolumn}>\n'@{activity('Lookup Old WaterMark Value').output.firstRow.WaterMarkValue}'\nAND \n@{pipeline().parameters.WaterMarkcolumn}<='@{activity('Lookup New WaterMark Value').output.FirstROW.Newwatermarkvalue}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -104,7 +104,7 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "OrderId",
+									"name": "OrderID",
 									"type": "Int32",
 									"physicalType": "int"
 								},
@@ -116,7 +116,7 @@
 							},
 							{
 								"source": {
-									"name": "ProductId",
+									"name": "ProductID",
 									"type": "String",
 									"physicalType": "varchar"
 								},
@@ -128,7 +128,7 @@
 							},
 							{
 								"source": {
-									"name": "CustomerId",
+									"name": "CustomerID",
 									"type": "String",
 									"physicalType": "varchar"
 								},
@@ -168,7 +168,7 @@
 							},
 							{
 								"source": {
-									"name": "Insertdatetime",
+									"name": "InsertDateTime",
 									"type": "DateTime",
 									"physicalType": "datetime"
 								},
