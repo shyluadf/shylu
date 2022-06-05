@@ -1,0 +1,27 @@
+{
+	"name": "DS_asql_Demobits_Watermarktable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_asql_Demobitsdb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TABLENAME",
+				"type": "varchar"
+			},
+			{
+				"name": "WATERMARKVALUE",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "WATERMARKTABLE"
+		}
+	}
+}
