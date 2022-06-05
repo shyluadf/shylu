@@ -1139,14 +1139,14 @@
 							"storedProcedureParameters": {
 								"NewTime": {
 									"value": {
-										"value": "@activity('Lookup New WaterMark Value').output.Firstrow.Newwatermarktaable",
+										"value": "@activity('Lookup New WaterMark Value').output.Firstrow.Newwatermarkvalue",
 										"type": "Expression"
 									},
 									"type": "DateTime"
 								},
 								"Tablename": {
 									"value": {
-										"value": "@activity('Lookup Old WaterMark Value').output.First.Tablename",
+										"value": "@activity('Lookup Old WaterMark Value').output.FirstRow.TableName",
 										"type": "Expression"
 									},
 									"type": "String"
