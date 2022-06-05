@@ -402,6 +402,11 @@
 					"referenceName": "Ls_asql_Demobitsdb",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"TableName": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [
@@ -438,7 +443,10 @@
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "ORDERS"
+					"table": {
+						"value": "@dataset().TableName",
+						"type": "Expression"
+					}
 				}
 			},
 			"dependsOn": [

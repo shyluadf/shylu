@@ -935,7 +935,10 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "Select TableName,WaterMarkValue from dbo.Watermarktable where Tablename='Orders'",
+								"sqlReaderQuery": {
+									"value": "Select TableName,WaterMarkValue from dbo.Watermarktable where Tablename='@pipeline().parameters.TableName'",
+									"type": "Expression"
+								},
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -961,7 +964,10 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "select max(insertdatetime) as newwatermarkvalue from dbo.orders",
+								"sqlReaderQuery": {
+									"value": "select max(@{pipeline().parameters.WaterMarkcolumn}) as newwatermarkvalue from @{pipeline().parameters.TableName}",
+									"type": "Expression"
+								},
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -1001,7 +1007,7 @@
 							"source": {
 								"type": "AzureSqlSource",
 								"sqlReaderQuery": {
-									"value": "Select OrderId,ProductId,CustomerId,UnitPrice,Quantity, Insertdatetime from dbo.ORDERS\nwhere Insertdatetime>\n'@{activity('Lookup Old WaterMark Value').output.FirstRow.WaterMarkValue}'\nAND Insertdatetime <='@{activity('Lookup New WaterMark Value').output.FirstROW.Newwatermarkvalue}'",
+									"value": "Select *from @{pipeline().parameters.TableName}\nwhere @{pipeline().parameters.WaterMarkcolumn}>\n'@{activity('Lookup Old WaterMark Value').output.FirstRow.WaterMarkValue}'\nAND \n@{pipeline().parameters.WaterMarkcolumn}<='@{activity('Lookup New WaterMark Value').output.FirstROW.Newwatermarkvalue}'",
 									"type": "Expression"
 								},
 								"queryTimeout": "02:00:00",
@@ -1111,12 +1117,17 @@
 							{
 								"referenceName": "DS_asql_demobits_orders",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"TableName": {
+										"value": "@pipeline().parameters.TableName",
+										"type": "Expression"
+									}
+								}
 							}
 						]
 					},
 					{
-						"name": "Stored procedure1",
+						"name": "Set Watermark",
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [
 							{
@@ -1162,6 +1173,16 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"parameters": {
+					"TableName": {
+						"type": "string",
+						"defaultValue": "orders"
+					},
+					"WaterMarkcolumn": {
+						"type": "string",
+						"defaultValue": "InsertDateTime"
+					}
 				},
 				"annotations": []
 			},
@@ -3894,6 +3915,11 @@
 					"referenceName": "Ls_asql_Demobitsdb",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"TableName": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [
@@ -3930,7 +3956,10 @@
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "ORDERS"
+					"table": {
+						"value": "@dataset().TableName",
+						"type": "Expression"
+					}
 				}
 			},
 			"dependsOn": [
