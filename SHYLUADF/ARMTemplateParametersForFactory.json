@@ -5,6 +5,12 @@
 		"factoryName": {
 			"value": "SHYLUADF"
 		},
+		"LS_asql_customerdb_connectionString": {
+			"value": ""
+		},
+		"Ls_asql_Demobitsdb_connectionString": {
+			"value": ""
+		},
 		"SqlServer1_connectionString": {
 			"value": ""
 		},

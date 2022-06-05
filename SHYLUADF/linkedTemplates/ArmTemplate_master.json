@@ -7,6 +7,14 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "SHYLUADF"
 		},
+		"LS_asql_customerdb_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_asql_customerdb'"
+		},
+		"Ls_asql_Demobitsdb_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Ls_asql_Demobitsdb'"
+		},
 		"SqlServer1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
@@ -77,6 +85,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"LS_asql_customerdb_connectionString": {
+						"value": "[parameters('LS_asql_customerdb_connectionString')]"
+					},
+					"Ls_asql_Demobitsdb_connectionString": {
+						"value": "[parameters('Ls_asql_Demobitsdb_connectionString')]"
 					},
 					"SqlServer1_connectionString": {
 						"value": "[parameters('SqlServer1_connectionString')]"
